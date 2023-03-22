@@ -119,8 +119,8 @@ $ms9: calc($ms8 * $ratio); // 52px
 $ms10: calc($ms9 * $ratio); // 58px
 $ms11: calc($ms10 * $ratio); // 66px
 
-$font-family-primary: Helvetica, arial, sans-serif;
-$font-family-secondary: Times, serif;
+$font-family-primary: 'droid serif', arial, sans-serif;
+$font-family-secondary: 'Inter Web', serif;
 
 // ---
 // Settings: Spacing
@@ -168,7 +168,13 @@ $columns: (2, 3, 4, 5, 6) !default;
 /*---------------------------------------/*
  # GENERIC
 /*---------------------------------------*/
-
+@font-face {
+  font-family: 'FontName';
+  src: url('../fonts/Inter-Regular.woff2') format("woff2");
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+}
 *,
 *:before,
 *:after {
@@ -205,6 +211,9 @@ html {
   font-family: $font-family-primary; // global font-family
   color: $color-text-light; // global text color
   scroll-behavior: smooth; // smooth scrolling
+  color: $color-text-light;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
 /*
@@ -221,12 +230,15 @@ html {
     ---
     Default markup for typographic elements
 */
-
+h1, h2, h3{
+  color: $color-text;
+}
 h1 {
   font-size: $ms5;
   font-weight: 700;
   line-height: calc($baseline * 4);
   margin-bottom: $space-m;
+  font-family: "Playfair Display";
 }
 
 h2 {
@@ -485,6 +497,38 @@ a:active {
 /*
     Components: Author
 */
+.c-author{
+  display: flex;
+  align-items: center;
+  display: flex;
+
+  align-items: center;
+ 
+  margin-bottom: $space-m;
+ 
+  gap: $space-s;
+
+  &__image{
+    width: 56px;
+    height: 56px;
+    border-radius: 100%;
+  }
+  &__name, &__meta{
+    margin-bottom: 0;
+  }
+  &__meta{
+    font-size: $ms-1;
+    font-family: $font-family-secondary;
+   
+    line-height: $space-m;
+   
+    margin-top: $space-xxs;
+  }
+  &__name{
+    font-size: $ms0;
+    line-height: $space-m;
+  }
+}
 
 /*
     Components: Quote
@@ -513,7 +557,9 @@ a:active {
     Scope: Content
     Specific behaviour inside s-content class
 */
-
+.s-content * + h2{
+  margin-top: $space-xl;
+}
 /*---------------------------------------/*
  # UTILITIES
 /*---------------------------------------*/
